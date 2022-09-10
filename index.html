@@ -1,0 +1,81 @@
+<html>
+  <body>
+    <div id="background">
+      <div
+        id="character"
+        style="
+          position: absolute;
+          top: 100px;
+          left: 450px;
+          background-image: url('img/down1.png');
+          width: 59px;
+          height: 86px;
+        "
+      ></div>
+    </div>
+    <script type="text/javascript">
+      let leftValue = 450,
+        topValue = 100,
+        step = 1;
+
+      function update() {
+        // document.getElementById("character").style.backgroundImage =
+        //   "url('img/" + direction + "1.png')";
+        // console.log("update previous value", previousValue);
+        // if (previousValue > currentValue) {
+        //   document.getElementById("character").style.backgroundImage =
+        //     "url('img/" + direction + "1.png')";
+        // }
+        if (step == 1) {
+          step = 2;
+        } else {
+          step = 1;
+        }
+
+        let one = (document.getElementById("character").style.backgroundImage =
+          "url('img/" + direction + step + ".png')");
+
+        // let two = (document.getElementById("character").style.backgroundImage =
+        //   "url('img/" + direction + "2.png')");
+
+        // document.getElementById("character")
+        // document.getElementById("character")
+      }
+      document.onkeydown = function (e) {
+        console.log(e);
+        if (e.keyCode == 37 && leftValue > 0) {
+          //LEFT
+
+          leftValue = leftValue - 10;
+          document.getElementById("character").style.left = leftValue + "px";
+          direction = "left";
+          // document.getElementById("character").style.backgroundImage =
+          //   "url('img/left1.png')";
+          // keep the character to stay between 0 to 500 for both leftValue and topValue variables
+        } else if (e.keyCode == 39 && leftValue < 500) {
+          //RIGHT
+          leftValue = leftValue + 10;
+          document.getElementById("character").style.left = leftValue + "px";
+          direction = "right";
+          // document.getElementById("character").style.backgroundImage =
+          //   "url('img/right1.png')";
+        } else if (e.keyCode == 40 && topValue < 500) {
+          // BOTTOM
+          topValue = topValue + 10;
+          document.getElementById("character").style.top = topValue + "px";
+          direction = "down";
+          // document.getElementById("character").style.backgroundImage =
+          //   "url('img/down1.png')";
+        } else if (e.keyCode == 38 && topValue > 0) {
+          // TOP
+          topValue = topValue - 10;
+          document.getElementById("character").style.top = topValue + "px";
+          direction = "top";
+          // document.getElementById("character").style.backgroundImage =
+          //   "url('img/top1.png')";
+        }
+        update();
+      };
+    </script>
+  </body>
+</html>
